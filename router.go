@@ -139,6 +139,30 @@ func (router *Router) Refresh() (err *Error) {
 	return
 }
 
+/**
+cloudtrends code
+*/
+var RouteLineNum int
+
+/**
+cloudtrends code
+*/
+func AddDynamicRoute(line string) {
+	// A single route
+	method, path, action, fixedArgs, found := parseRouteLine(line)
+	if !found {
+		ERROR.Println("Failed to add new dynamic route: ", line)
+	}
+	routesPath := ""
+	n := RouteLineNum + 1
+	route := NewRoute(method, path, action, fixedArgs, routesPath, n)
+	MainRouter.Routes = append(MainRouter.Routes, route)
+	err := MainRouter.Tree.Add(route.TreePath, route)
+	if nil != err {
+		ERROR.Println("MainRouter Tree Failed to add new dynamic route: ", line)
+	}
+}
+
 func (router *Router) updateTree() *Error {
 	router.Tree = pathtree.New()
 	for _, route := range router.Routes {
@@ -172,9 +196,17 @@ func parseRoutesFile(routesPath, joinedPath string, validate bool) ([]*Route, *E
 // parseRoutes reads the content of a routes file into the routing table.
 func parseRoutes(routesPath, joinedPath, content string, validate bool) ([]*Route, *Error) {
 	var routes []*Route
-
+	/**
+	cloudtrends
+	*/
+	content = content + "\n"
+	content = content + "GET / GobbsTemplatesController.UserDispatchDirectUrl\n"
 	// For each line..
 	for n, line := range strings.Split(content, "\n") {
+		/**
+		cloudtrends
+		*/
+		RouteLineNum = n
 		line = strings.TrimSpace(line)
 		if len(line) == 0 || line[0] == '#' {
 			continue
@@ -414,14 +446,35 @@ func (router *Router) Reverse(action string, argValues map[string]string) *Actio
 }
 
 func init() {
-	OnAppStart(func() {
+	if !IsRouteInit {
+		IsRouteInit = true
+		ERROR.Println("INIT Begin Router init.")
+		OnAppStart(func() {
+			MainRouter = NewRouter(path.Join(BasePath, "conf", "routes"))
+			if MainWatcher != nil && Config.BoolDefault("watch.routes", true) {
+				MainWatcher.Listen(MainRouter, MainRouter.path)
+			} else {
+				MainRouter.Refresh()
+			}
+			//send a signal add custom
+		})
+	}
+}
+
+/**
+cloudtrends
+*/
+func InitRouteForRevel() {
+	if !IsRouteInit {
+		ERROR.Println("INIT Begin Router init  TRIGGER BY GOBBS .")
+		IsRouteInit = true
 		MainRouter = NewRouter(path.Join(BasePath, "conf", "routes"))
 		if MainWatcher != nil && Config.BoolDefault("watch.routes", true) {
 			MainWatcher.Listen(MainRouter, MainRouter.path)
 		} else {
 			MainRouter.Refresh()
 		}
-	})
+	}
 }
 
 func RouterFilter(c *Controller, fc []Filter) {

@@ -167,6 +167,22 @@ func NewTemplateLoader(paths []string) *TemplateLoader {
 	return loader
 }
 
+/**
+cloudtrends code
+*/
+func (loader *TemplateLoader) AddStringTemplate(templateName, tmplt_str string) (result bool, err error) {
+	if nil == loader.templateSet {
+		return
+	}
+	loader.templateSet.Delims("", "")
+	if _, err := loader.templateSet.New(templateName).Parse(tmplt_str); nil == err {
+		result = true
+	} else {
+		log.Printf("Error when add string to revel template:%s", err.Error())
+	}
+	return
+}
+
 // This scans the views directory and parses all templates as Go Templates.
 // If a template fails to parse, the error is set on the loader.
 // (It's awkward to refresh a single Go Template)
