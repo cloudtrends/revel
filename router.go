@@ -3,7 +3,7 @@ package revel
 import (
 	"encoding/csv"
 	"fmt"
-	"github.com/cloudtrends/pathtree"
+	"github.com/robfig/pathtree"
 	"io"
 	"io/ioutil"
 	"net/http"
