@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"github.com/revel/revel"
+	"github.com/cloudtrends/revel"
 	"os"
 	fpath "path/filepath"
 	"strings"

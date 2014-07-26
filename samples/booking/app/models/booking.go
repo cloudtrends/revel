@@ -2,8 +2,8 @@ package models
 
 import (
 	"fmt"
+	"github.com/cloudtrends/revel"
 	"github.com/coopernurse/gorp"
-	"github.com/revel/revel"
 	"regexp"
 	"time"
 )

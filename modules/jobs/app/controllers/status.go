@@ -1,8 +1,8 @@
 package controllers
 
 import (
-	"github.com/revel/revel"
-	"github.com/revel/revel/modules/jobs/app/jobs"
+	"github.com/cloudtrends/revel"
+	"github.com/cloudtrends/revel/modules/jobs/app/jobs"
 	"github.com/robfig/cron"
 	"strings"
 )

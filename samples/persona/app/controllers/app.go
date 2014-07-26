@@ -8,7 +8,7 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/revel/revel"
+	"github.com/cloudtrends/revel"
 )
 
 const host = "" // set this to your host

@@ -2,7 +2,7 @@ package cache
 
 import (
 	"errors"
-	"github.com/revel/revel"
+	"github.com/cloudtrends/revel"
 	"github.com/robfig/gomemcache/memcache"
 	"time"
 )

@@ -1,6 +1,6 @@
 package controllers
 
-import "github.com/revel/revel"
+import "github.com/cloudtrends/revel"
 
 type App struct {
 	*revel.Controller

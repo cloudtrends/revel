@@ -1,7 +1,7 @@
 package harness
 
 import (
-	"github.com/revel/revel"
+	"github.com/cloudtrends/revel"
 	"go/ast"
 	"go/parser"
 	"go/token"
@@ -143,13 +143,13 @@ cloudtrends
 
 */
 func NOTestProcessBookingSource(t *testing.T) {
-	revel.Init("prod", "github.com/revel/revel/samples/booking", "")
+	revel.Init("prod", "github.com/cloudtrends/revel/samples/booking", "")
 	sourceInfo, err := ProcessSource([]string{revel.AppPath})
 	if err != nil {
 		t.Fatal("Failed to process booking source with error:", err)
 	}
 
-	CONTROLLER_PKG := "github.com/revel/revel/samples/booking/app/controllers"
+	CONTROLLER_PKG := "github.com/cloudtrends/revel/samples/booking/app/controllers"
 	expectedControllerSpecs := []*TypeInfo{
 		{"GorpController", CONTROLLER_PKG, "controllers", nil, nil},
 		{"Application", CONTROLLER_PKG, "controllers", nil, nil},
@@ -181,7 +181,7 @@ NEXT_TEST:
 }
 
 func BenchmarkProcessBookingSource(b *testing.B) {
-	revel.Init("", "github.com/revel/revel/samples/booking", "")
+	revel.Init("", "github.com/cloudtrends/revel/samples/booking", "")
 	revel.TRACE = log.New(ioutil.Discard, "", 0)
 	b.ResetTimer()
 
