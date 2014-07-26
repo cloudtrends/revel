@@ -464,6 +464,8 @@ func init() {
 /**
 cloudtrends
 */
+var IsRouteInit bool
+
 func InitRouteForRevel() {
 	if !IsRouteInit {
 		ERROR.Println("INIT Begin Router init  TRIGGER BY GOBBS .")

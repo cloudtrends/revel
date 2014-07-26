@@ -138,7 +138,11 @@ func TestTypeExpr(t *testing.T) {
 	}
 }
 
-func TestProcessBookingSource(t *testing.T) {
+/**
+cloudtrends
+
+*/
+func NOTestProcessBookingSource(t *testing.T) {
 	revel.Init("prod", "github.com/revel/revel/samples/booking", "")
 	sourceInfo, err := ProcessSource([]string{revel.AppPath})
 	if err != nil {

@@ -58,8 +58,16 @@ func (c Static) Serve(prefix, filepath string) Result {
 	return c.RenderFile(file, "")
 }
 
+/**
+cloudtrends
+
+*/
+func NOstartFakeBookingApp() {
+	// for namespace changing so ... just skip test
+
+}
 func startFakeBookingApp() {
-	Init("prod", "github.com/revel/revel/samples/booking", "")
+	Init("prod", "github.com/cloudtrends/revel/samples/booking", "")
 
 	// Disable logging.
 	TRACE = log.New(ioutil.Discard, "", 0)

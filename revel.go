@@ -15,7 +15,7 @@ import (
 )
 
 const (
-	REVEL_IMPORT_PATH = "github.com/revel/revel"
+	REVEL_IMPORT_PATH = "github.com/cloudtrends/revel"
 )
 
 type revelLogs struct {
@@ -161,6 +161,19 @@ func Init(mode, importPath, srcPath string) {
 	}
 	Config.SetSection(mode)
 
+	/**
+	cloudtrends
+	custom the view dir to outsider
+	*/
+	var custom_view_dir string
+	custom_view_dir = Config.StringDefault("custom.view_dir", "")
+	custom_view_dir = strings.TrimSpace(custom_view_dir)
+	if len(custom_view_dir) > 1 {
+		custom_view_dirs := strings.Split(custom_view_dir, ";")
+		for _, one_view_dir := range custom_view_dirs {
+			TemplatePaths = append(TemplatePaths, one_view_dir)
+		}
+	}
 	// Configure properties from app.conf
 	DevMode = Config.BoolDefault("mode.dev", false)
 	HttpPort = Config.IntDefault("http.port", 9000)
