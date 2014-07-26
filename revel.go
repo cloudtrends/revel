@@ -2,7 +2,7 @@ package revel
 
 import (
 	"github.com/agtorre/gocolorize"
-	"github.com/cloudtrends/config"
+	"github.com/robfig/config"
 	"go/build"
 	"io"
 	"io/ioutil"

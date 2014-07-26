@@ -2,7 +2,7 @@ package revel
 
 import (
 	"fmt"
-	"github.com/cloudtrends/config"
+	"github.com/robfig/config"
 	"os"
 	"path/filepath"
 	"regexp"
