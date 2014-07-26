@@ -2,8 +2,8 @@ package jobs
 
 import (
 	"fmt"
+	"github.com/cloudtrends/cron"
 	"github.com/cloudtrends/revel"
-	"github.com/robfig/cron"
 )
 
 const DEFAULT_JOB_POOL_SIZE = 10
